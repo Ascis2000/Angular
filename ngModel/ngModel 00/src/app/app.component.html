@@ -1,0 +1,27 @@
+<b>Formulario de registro</b>
+
+<div class="boxFormulario">
+  <form>
+    <div class="boxData">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" [(ngModel)]="usuario.nombre" required minlength="3" />
+      <span class="error" *ngIf="nombreError">El nombre es obligatorio (mínimo 3 caracteres)</span>
+    </div>
+
+    <div class="boxData">
+      <label for="apellido">Apellido:</label>
+      <input type="text" id="apellido" name="apellido" [(ngModel)]="usuario.apellido" required />
+      <span class="error" *ngIf="apellidoError">El apellido es obligatorio</span>
+    </div>
+
+    <div class="boxData">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="usuario.email" required email />
+      <span class="error" *ngIf="emailError">El correo electrónico no es válido</span>
+    </div>
+
+    <input type="button" (click)="enviarDatos()" value="Registrase" />
+  </form>
+</div>
+
+<p>Usuario registrado: {{ usuario | json }}</p>
