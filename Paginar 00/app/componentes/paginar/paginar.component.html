@@ -10,9 +10,9 @@
       </select>
     </div>
     <div class="col-4 text-end">
-      <b>Página {{paginaActual}},</b>
+      <b>Página {{paginaActual}}/{{totalPaginas}},</b>
         {{ ((paginaActual - 1) * elemsPagina) + 1 }} - 
-        {{ getTotalPaginasPorUsuario()}} 
+        {{ getTotalElemsPorPagina()}} 
         items de {{listadoUsuarios.length}} usuarios totales
     </div>
   </div>

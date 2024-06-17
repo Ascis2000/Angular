@@ -19,7 +19,7 @@ listadoUsuarios: Almacena la lista de usuarios.
 
 FUNCIONES
 - getTotalPaginas()
-- getTotalPaginasPorUsuario()
+- getTotalElemsPorPagina()
 - onChangeListarUsuarios()
 - mostrarUsuariosPorPagina()
 - paginaAnterior()
@@ -36,7 +36,7 @@ export class PaginarComponent implements OnInit{
   public paginaActual = 1; // numero de página actual
   public totalPaginas = 0; // total de páginas
   public numerosTotalPaginas: any[] = []; // Almacena los números de página visibles
-  public itemsSelectOptions: number[] = [5, 10, 15, 20]; // Valores posibles del selector
+  public itemsSelectOptions: number[] = [5, 10, 15, 20, 25]; // Valores posibles del selector
 
   constructor(
     private userService: UserService // Servicio Usuarios
@@ -47,7 +47,7 @@ export class PaginarComponent implements OnInit{
   public getTotalPaginas() {
     return Math.ceil(this.SU.arr_usuarios.length / this.elemsPagina);
   }
-  public getTotalPaginasPorUsuario() {
+  public getTotalElemsPorPagina() {
     return Math.min(this.paginaActual * this.elemsPagina, this.SU.arr_usuarios.length)
   }
 
@@ -55,6 +55,7 @@ export class PaginarComponent implements OnInit{
   public onChangeListarUsuarios(event: Event): void {
     const selectedValue = (event.target as HTMLSelectElement);
     this.elemsPagina = parseInt(selectedValue.value, 10);
+    this.totalPaginas = this.getTotalPaginas();
     this.paginaActual = 1; // Resetear a la primera página
   }
 
