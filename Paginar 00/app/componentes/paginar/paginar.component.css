@@ -1,0 +1,94 @@
+
+body{
+    font-size: 1.5rem;
+}
+
+div, span, label, ul, li {
+    width: auto;
+    box-sizing: content-box;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+.pagination li {
+    margin: 0 2px;
+}
+
+
+.pagination li {
+    width: auto;
+    text-decoration: none;
+    color: #0073e6;
+    padding: 6px 8px;
+    border: 1px solid #9093b3;
+    border-radius: 4px;
+    cursor:pointer;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
+}
+
+.pagination li:hover {
+    color: #133e69;
+    background-color: #ced9ea;
+}
+
+.pagination li.active {
+    color: white;
+    background-color: #0073e6;
+    border: 1px solid #0073e6;
+    cursor:pointer;
+}
+.pagination li.disabled {
+    color: #ccc;
+    background-color: #edf1f4;
+    border: 1px solid #b5b8ba;
+    pointer-events: none;
+    cursor:default;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
+}
+.pagination .jump {
+    color: #2c3033;
+    cursor: default;
+    background-color: #ffffff;
+    border: 0px solid #b5b8ba;
+}
+.pagination .jump:hover {
+    color: #2c3033;
+    cursor: default;
+    background-color: #ffffff;
+    border: 0px solid #b5b8ba;
+}
+
+.noSelect {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
+}
+
+
+/* ************************************* */
+
+.icon-text-container {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+  .icon-text-container-right i {
+    margin-right: 5px; /* Ajusta el espacio entre el ícono y el texto */
+  }
+  .icon-text-container-left i {
+    margin-left: 5px; /* Ajusta el espacio entre el texto y el ícono */
+  }
