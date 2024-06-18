@@ -1,0 +1,139 @@
+
+<div class="container text-center">
+  <div class="row justify-content-end">
+    <div class="col-2">
+      <label for="itemsPerPage">Usuarios por página:</label>
+      <select id="itemsPerPage" style="margin-left:3px;"(change)="onChangeListarUsuarios($event)">
+        @for (option of itemsSelectOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-6 text-end">
+      <b>Página {{paginaActual}}/{{totalPaginas}},</b>
+        Mostrando {{ ((paginaActual - 1) * elemsPagina) + 1 }} -
+        {{ getTotalElemsPorPagina()}}
+        Usuarios de {{listadoUsuarios.length}} usuarios totales
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mx-auto">
+
+    <div class="col-5">
+
+    </div>
+
+    <div class="col-7 text-end">
+      <div class="">
+
+      </div>
+    </div>
+      <div>
+
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col">
+      <div class="" style="height: 250px; overflow:auto;">
+
+        <table class="table">
+        <thead>
+          <tr>
+            <!-- <th scope="col" style="width: 2%;" nowrap>#</th> -->
+            <th (click)="sort('id')" style="width: 4%;" nowrap>
+              #
+              @if (columnaOrden === 'id') {
+              <i class="fa" [class.fa-sort-asc]="ordenAscendente" [class.fa-sort-desc]="!ordenAscendente"></i>
+              }
+            </th>
+            <th (click)="sort('nombre')" style="width: 26%;">
+              Nombre
+              @if (columnaOrden === 'nombre') {
+                <i class="fa" [class.fa-sort-asc]="ordenAscendente" [class.fa-sort-desc]="!ordenAscendente"></i>
+              }
+            </th>
+
+            <th scope="col" style="width: 70%;">Apellidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of mostrarUsuariosPorPagina(); track user; let index = $index) {
+          <tr>
+            <th scope="row">{{ user.id }}.</th>
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.apellidos }}</td>
+          </tr>
+        }
+        </tbody>
+        </table>
+      </div>
+
+      <!-- Controles de paginación -->
+      <div class="pagination mb-2" style="margin-top: 10px;">
+
+        <li (click)="irAPagina(1);" [class.disabled]="paginaActual === 1">
+
+          <div class="icon-text-container-right">
+            <i class="fa-solid fa-angles-left fa-sm"></i>
+            <span>Primera</span>
+          </div>
+
+        </li>
+        <li (click)="paginaAnterior()" [class.disabled]="paginaActual === 1">
+
+          <div class="icon-text-container-right">
+            <i class="fa-solid fa-angle-left fa-sm"></i>
+            <span>Anterior</span>
+          </div>
+
+        </li>
+
+        <!-- Números de página intermedios -->
+        @for (numero of numerosTotalPaginas; track numero;) {
+          <li (click)="irAPagina(numero);"
+            [class.active]="paginaActual === numero"
+          >{{ numero }}
+          </li>
+        }
+
+        <li (click)="paginaSiguiente()" [class.disabled]="paginaActual === totalPaginas">
+
+          <div class="icon-text-container-left">
+            <span>Siguiente</span>
+            <i class="fa-solid fa-angle-right fa-sm"></i>
+          </div>
+
+        </li>
+        <li (click)="irAPagina(totalPaginas)" [class.disabled]="paginaActual === totalPaginas">
+
+          <div class="icon-text-container-left">
+            <span>Última</span>
+            <i class="fa-solid fa-angles-right fa-sm"></i>
+          </div>
+
+        </li>
+      </div>
+
+      <!-- <ul class="pagination">
+        <li class="disabled">&laquo; Primera</li>
+        <li class="disabled">&lt; Anterior</li>
+        <li class="jump">...</li>
+        <li>3</li>
+        <li class="active">4</li>
+        <li>5</li>
+        <li class="jump">...</li>
+        <li>10</li>
+        <li>Siguiente &gt;</li>
+        <li>Última &raquo;</li>
+      </ul> -->
+
+    </div>
+  </div>
+</div>
+
+
+
+
