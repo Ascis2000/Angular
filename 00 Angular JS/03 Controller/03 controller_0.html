@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+<script src="../lib/angular/angular.1.4.2.js"></script>
+
+<script>
+
+angular.module('myApp', [])
+	.controller('filtroCtrl', ['$scope', function($scope)
+	{
+		$scope.cities =
+		[
+			{ name:'Madrid', country:'España'},
+			{ name:'Puerto Madryn', country:'Argentina'},
+			{ name:'Paris', country:'Francia'}, 
+			{ name:'Londres', country:'Reino Unido'}
+		];
+	}
+	]);
+	
+</script>
+
+</head>
+
+<body>
+
+<div style="font-weight:bold;">query:</div> <input type="text" ng-model="query">
+
+<div ng-controller="filtroCtrl">
+
+	<h1>Listado ordenado por la query introducida</h1>
+	<ul>   
+		<li ng-repeat='city in cities | filter:query'>
+		{{city.name}} - {{city.country | uppercase}}
+		</li>
+	</ul>
+
+	<h1>Listado ordenado por la query introducida y por Nombre</h1>
+	<ul>   
+		<li ng-repeat="city in cities | filter:query | orderBy:'name'">
+		{{city.name}} - {{city.country}}
+		</li>
+	</ul>
+</div>
+
+</body>
+</html>

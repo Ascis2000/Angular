@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html ng-app="">
+
+<head>
+
+<script src="../lib/angular/angular.1.4.2.js"></script>
+
+</head>
+
+<body>
+
+<div style="font-weight:bold;">query:</div> <input type="text" ng-model="query">
+
+<div ng-init="cities =
+[
+	{ name:'Bariloche', country:'Argentina'},
+	{ name:'Puerto Madryn', country:'Argentina'},
+	{ name:'Paris', country:'Francia'}, 
+	{ name:'Londres', country:'Reino Unido'}
+]">
+</div>
+
+<h1>Listado ordenado por la query introducida</h1>
+<ul>   
+	<li ng-repeat='city in cities | filter:query'>
+	{{city.name | uppercase}} - {{city.country}}
+	</li>
+</ul>
+
+</body>
+</html>

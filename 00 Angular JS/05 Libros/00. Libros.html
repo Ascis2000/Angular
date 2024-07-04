@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Listado de Libros</title>
+
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="css/app.css"/>
+
+</head>
+
+<body ng-controller="TodosLosLibrosCtrl">
+    
+    <div class="filtro">
+        <span class="buscarLibros">Buscar:</span> 
+        <input ng-model="libroBuscado" class="filtroLibros">
+    </div> 
+
+     <table class="tablaLibros">
+         <tr>
+             <th>Titulo</th>
+             <th>Autor</th>
+         </tr>
+        <tr ng-repeat="libro in libros | filter:libroBuscado">
+            <td>{{libro.titulo}}</td>
+            <td>{{libro.autor}}</td>
+        </tr>
+    </table>
+    
+  <!-- Agregamos angular para que funcione  -->
+  <script src="../../lib/angular/angular.1.4.2.js"></script>
+  
+  <!-- Importamos los archivos extras que vamos a usar -->
+
+  <script src="js/controllers.js"></script>  
+</body>
+</html>

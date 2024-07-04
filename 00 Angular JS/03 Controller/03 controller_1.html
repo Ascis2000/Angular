@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+<script src="../lib/angular/angular.1.4.2.js"></script>
+
+<script>
+
+var myApp = angular.module("myApp", []);
+ 
+myApp.controller("myController", function($scope)
+{
+    $scope.cities =
+	[
+		{ name:'madrid', country:'españa'},
+		{ name:'puerto Madryn', country:'argentina'},
+		{ name:'paris', country:'francia'}, 
+		{ name:'londres', country:'reino unido'}
+	];
+});
+
+//filtro para poner la primera letra en mayúscula
+myApp.filter("capitalize", function()
+{
+    return function(text) 
+	{
+        if(text !== null)
+		{
+            return text.substring(0,1).toUpperCase()+text.substring(1);
+        }
+    };
+});
+ 
+//filtro para poner todo el texto en mayúsculas
+myApp.filter("toUpper", function()
+{
+    return function(text)
+	{
+        if(text !== null)
+		{
+            return text.toUpperCase();
+        }
+    };
+});
+ 
+//filtro para poner puntos suspensivos a partir de x carácteres
+myApp.filter("maxLength", function()
+{
+    return function(text, max)
+	{
+        if(text !== null){
+            if(text.length > max)
+			{
+                return text.substring(0, max) + "...";
+            }
+        }
+    };
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div style="font-weight:bold;">query:</div> <input type="text" ng-model="query">
+
+<div ng-controller="myController">
+
+	<h1>Listado ordenado por la query introducida y capitalizado el nombre de la ciudad</h1>
+	<ul>   
+		<li ng-repeat='city in cities | filter:query'>
+		{{city.name | capitalize}} - {{city.country }}
+		</li>
+	</ul>
+
+	<h1>Listado ordenado por la query introducida y ordenado por el nombre de la ciudad descendentemente</h1>
+	<ul>   
+		<li ng-repeat="city in cities | filter:query | orderBy:'name':true">
+		{{city.name}} - {{city.country}}
+		</li>
+	</ul>
+	
+	<h1>Listado ordenado por la query introducida y por el nombre del pais capitalizado ascendentemente y con un maximo de 5 caracteres</h1>
+	<ul>   
+		<li ng-repeat="city in cities | filter:query | orderBy:'country':false">
+		{{city.name}} - {{city.country | maxLength : 5 | capitalize}}
+		</li>
+	</ul>
+</div>
+ 
+</body>
+</html>
